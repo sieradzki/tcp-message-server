@@ -110,5 +110,22 @@ class Config(MutableMapping):
 
 
 if __name__ == "__main__":
-  config = Config()
-  print(config)
+  """ Example usage of the config module. """
+
+  # Initialize the config
+  pwd = os.path.dirname(os.path.abspath(__file__))
+  tmp_config_path = os.path.join(pwd, "tmp_config.json")
+  config = Config(tmp_config_path)
+  config.init_config()
+
+  print(f"Current config: {config}")
+  print(f"ServerID: {config["ServerID"]}")
+
+  config["ServerID"] = "new_server_id"
+  print(f"Updated config: {config}")
+
+  del config["ServerID"]
+  print(f"Deleted ServerID: {config}")
+
+  # Cleanup
+  os.remove(tmp_config_path)
