@@ -68,7 +68,12 @@ class Config(MutableMapping):
         return True
       else:
         with open(self._config_file_path, "r", encoding="utf-8") as config_file:
-          self._config = json.load(config_file)
+          try:
+            self._config = json.load(config_file)
+          except json.JSONDecodeError as e:
+            logger.error(f"Invalid JSON in config file: {e}")
+            self.init_config()
+            return False
         return True
     except FileNotFoundError as e:
       logger.error(f"The configuration file was not found. {e}")
@@ -85,11 +90,14 @@ class Config(MutableMapping):
 
   def __setitem__(self, key: str, value: Any):
     self._config[key] = value
-    self.write_config_to_JSON()
+    self._write_config_to_json()
 
   def __delitem__(self, key: str):
-    del self._config[key]
-    self.write_config_to_JSON()
+    try:
+      del self._config[key]
+      self._write_config_to_json()
+    except KeyError:
+      logger.warning(f"Key not found in config: {key}.")
 
   def __iter__(self):
     return iter(self._config)
