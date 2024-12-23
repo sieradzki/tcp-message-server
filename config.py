@@ -16,9 +16,9 @@ class Config(MutableMapping):
   def __init__(self,
                config_file_path: Optional[str] = None):
 
-    self._default_config_path = os.path.join(
+    self._default_config_path: str = os.path.join(
       PROJECT_ROOT, "config.json")
-    self._config_file_path = config_file_path or self._default_config_path
+    self._config_file_path: str = config_file_path or self._default_config_path
     self._load_config()
 
   def init_config(self) -> None:
