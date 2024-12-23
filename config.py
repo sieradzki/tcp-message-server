@@ -11,6 +11,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
 class Config(MutableMapping):
+  """ Configuration class for the application. """
+
   def __init__(self,
                config_file_path: Optional[str] = None):
 
@@ -29,9 +31,9 @@ class Config(MutableMapping):
       "AllowedIPAdddresses": ["10.0.0.0/24", "192.168.1.0/24"]
     }
 
-    self.write_config_to_JSON()
+    self._write_config_to_json()
 
-  def write_config_to_JSON(self) -> bool:
+  def _write_config_to_json(self) -> bool:
     """ Write config to a JSON file. 
 
     Returns:
