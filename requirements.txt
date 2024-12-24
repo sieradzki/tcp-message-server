@@ -1,4 +1,5 @@
 astroid==3.3.7
+colorlog==6.9.0
 dill==0.3.9
 iniconfig==2.0.0
 isort==5.13.2
