@@ -1,5 +1,4 @@
 import logging
-import sys
 import colorlog
 
 
@@ -11,11 +10,11 @@ def configure_logging():
     "%(log_color)s[%(levelname)s|%(module)s|L%(lineno)d] %(asctime)s: %(message)s",
     datefmt="%Y-%m-%dT%H:%M:%S%z",
     log_colors={
-      'DEBUG': 'cyan',
-      'INFO': 'green',
-      'WARNING': 'yellow',
-      'ERROR': 'red',
-      'CRITICAL': 'red,bg_white',
+      "DEBUG": "cyan",
+      "INFO": "green",
+      "WARNING": "yellow",
+      "ERROR": "red",
+      "CRITICAL": "red,bg_white",
     },
   ))
 
