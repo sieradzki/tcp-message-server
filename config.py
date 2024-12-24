@@ -5,6 +5,9 @@ import os
 from collections.abc import MutableMapping
 from typing import Any, Optional
 
+from logging_config import configure_logging
+
+configure_logging()
 logger = logging.getLogger(__name__)
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
